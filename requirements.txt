@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+pandas
+fastavro
+pyodbc
+azure-storage-blob
+python-dotenv
+os
+requests
