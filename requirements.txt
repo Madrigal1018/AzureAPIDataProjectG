@@ -6,5 +6,4 @@ fastavro
 pyodbc
 azure-storage-blob
 python-dotenv
-os
 requests
