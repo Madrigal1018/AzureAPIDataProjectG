@@ -5,6 +5,7 @@ from .crud import insert_batch, ingest_from_blob
 from backup import backup_table, restore_table, backup_all_tables_to_blob, restore_all_tables_from_blob
 import logging
 from .utils import upload_logs_to_blob
+from .report_queries import get_hiring_summary, get_top_departments_by_hiring
 
 
 app = FastAPI()
@@ -44,3 +45,21 @@ def restore_all_tables():
 def upload_logs():
     upload_logs_to_blob()
     return {"message": "Logs uploaded to blob successfully"}
+
+
+@app.get("/hiring/summary")
+def hiring_summary():
+    try:
+        result = get_hiring_summary()
+        return {"summary": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+
+@app.get("/hiring/top-departments")
+def top_departments():
+    try:
+        result = get_top_departments_by_hiring()
+        return {"departments": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
